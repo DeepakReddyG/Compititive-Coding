@@ -1,44 +1,51 @@
-//finding the frequency of each and every element in an array.
-
-//frequency of the number in an given array. 
+//finding the frequency of elements in an array. 
 #include<stdio.h>
-void count_function(int a[], int n)
+void frequency(int a[], int size)
 {
-    int max = a[0];
-    for(int i=1; i<n; i++)
+    int b[1000], i, j, max;
+    
+    max = a[0];
+    
+    for(i=1; i<size; i++)
     {
         if(a[i]>max)
             max = a[i];
     }
-    printf("\n max = %d", max);
-    max = max+1;
-    int freq[max];
-    for(int i=0; i<max; i++)
+    max++;
+   
+    b[max];
+    
+    for(i=0; i<max; i++)
+        b[i]=0;
+        
+    for(i=0; i<size; i++)
     {
-        freq[i] =0;
-    }
-    for(int i=0; i<n; i++)
-    {
-       freq[a[i]]++;
-    }
-    for(int i=0; i<n;i++)
-    {
-        printf("\nfrequency of %d is %d",a[i], freq[a[i]]);
+        b[a[i]]++;
     }
     
-      
+    for(i=0; i<max; i++)
+    {
+      if(b[a[i]]>1)
+        printf("\nfrequency of %d is %d",i, b[i]);
+    }
+    
 }
-int main()
+int main(void)
 {
-    int n, a[20], i;
-    printf("enter the size of your array: ");
-    scanf("%d", &n);
-    printf("enter elements of your array: ");
-    for(i=0; i<n; i++)
+    int a[1000], size, i;
+    printf("Input array size: ");
+    scanf("%d", &size);
+    
+    printf("Input array size: ");
+    i=0;
+    while(i<size)
     {
         scanf("%d", &a[i]);
+        i++;
     }
-    count_function(a, n);
+    
+    frequency(a, size);
     
     return 0;
 }
+
