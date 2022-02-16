@@ -14,7 +14,8 @@ int main()
             str[i] = str[i]+32;
         }
     }
-    printf("\nEntered string: %s\n", str);
+    printf("\nName: %s\n", str);
+    printf("\nYour name has %ld characters\n", strlen(str));
     int freq[26];
     for(int i=0; i<26; i++)
         freq[i]=0;
@@ -34,11 +35,25 @@ int main()
             max = freq[i];
     }
     printf("\n\nCharacters with maximum frequency:");
-    for(int i=0; i<26; i++)
+    int count =0;
+    for(int i=0; i<strlen(str); i++)
     {
-        if(freq[i]==max)
+        if(freq[str[i]-97]==max)
+            count++;
+    }
+    
+    if(count==strlen(str))
+    {
+        printf("\nAll characters have same frequency");
+    }
+    else
+    {
+        for(int i=0; i<26; i++)
         {
-            printf("\n%c has max frequency of %d", i+97, freq[i]);
+        if(freq[i]==max)
+            {
+                printf("\n%c has max frequency of %d", i+97, freq[i]);
+            }
         }
     }
     
