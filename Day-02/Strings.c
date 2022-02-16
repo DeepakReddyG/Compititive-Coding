@@ -1,52 +1,48 @@
-//write a c program to count the occurance of each character of a string
-//find the character has the maximum frequency if two characters have the same freqeuncy as a maximum print all the characters
 #include<stdio.h>
 #include<string.h>
 int main()
 {
-    char str[1000], p;
-    printf("enter string: ");
-    scanf("%s", str);
+    char str[1000];
+    printf("Input string: ");
+    scanf("%[^\n]s", str);
     
-    printf("\nInputed string: %s\n", str);
     
-    int b[26];
-    for(int i=0; i<26; i++)
-        b[i] =0;
-    
-    for(int i=0; str[i]!='\0'; i++)
+    for(int i=0; i<strlen(str); i++)
     {
-            printf("\ncomparing %c", str[i]);
-            int x = str[i]-97;
-            printf("\n\tincrementing b[%d]",x);
-            b[x]++;
-        
+        if(str[i]>=65 && str[i]<=90)
+        {
+            str[i] = str[i]+32;
+        }
     }
-    printf("\n\n");
-   for(int i=0; i<26; i++)
-   {
-      if(b[i]>0)
-        printf("\n%c has got a freqeuncy of %d", i+97, b[i]);
-   }
-   int max = b[0];
-   for(int i=0; i<26; i++)
-   {
-       if(b[i]>max)
-       {
-            max = b[i];
-            p =i;
-            
-       }
-   }
-   
-  printf("\n");
-    printf("\nCharacters with max freqeuncy:");
+    printf("\nEntered string: %s\n", str);
+    int freq[26];
+    for(int i=0; i<26; i++)
+        freq[i]=0;
+    
+    for(int i=0; i<strlen(str); i++)
+        freq[str[i]-97]++;
+    printf("\nCharacter\t\tfrequency");
     for(int i=0; i<26; i++)
     {
-        if(b[i]==max)
-             printf("\n%c has a max freqeuncy as %d",i+97, max);
-            
+        if(freq[i]>0)
+            printf("\n    %c-------------------->%d", i+97, freq[i]);
     }
+    int max = freq[0];
+    for(int i=1; i<26; i++)
+    {
+        if(freq[i]>max)
+            max = freq[i];
+    }
+    printf("\n\nCharacters with maximum frequency:");
+    for(int i=0; i<26; i++)
+    {
+        if(freq[i]==max)
+        {
+            printf("\n%c has max frequency of %d", i+97, freq[i]);
+        }
+    }
+    
+    return 0;
+    
     
 }
-
